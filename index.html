@@ -24,16 +24,17 @@
     </script>
     
     <meta name="author" content="egma" />
-    
-
-
- 
-    <meta
-      property="og:title"
-      content="JUI GROUPS"
-    />
-    
-   
+    <meta name="description" content="JUI GROUPS — Official site. Printing, products and solutions." />
+    <link rel="canonical" href="https://jui-groups.vercel.app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="JUI GROUPS" />
+    <meta property="og:description" content="JUI GROUPS — Official site. Printing, products and solutions." />
+    <meta property="og:url" content="https://jui-groups.vercel.app" />
+    <meta property="og:image" content="/images/cover-share.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="JUI GROUPS" />
+    <meta name="twitter:description" content="JUI GROUPS — Official site. Printing, products and solutions." />
+    <meta name="twitter:image" content="/images/cover-share.jpg" />
   
   
     <script>
@@ -42,7 +43,7 @@
       _paq.push(["trackPageView"]);
       _paq.push(["enableLinkTracking"]);
       (function () {
-        var u = "//https://jui-groups.vercel.app/analytics/";
+        var u = "https://jui-groups.vercel.app/analytics/";
         _paq.push(["setTrackerUrl", u + "matomo.php"]);
         _paq.push(["setSiteId", "1"]);
         var d = document,
@@ -57,7 +58,9 @@
     <link href="main.bundle.css" rel="stylesheet" />
   </head>
   <body>
-    <audio id="bg-music" src="/images/bgmusic.mp3" autoplay loop preload="auto"></audio>
+    <audio id="bg-music" autoplay loop preload="auto" muted playsinline>
+      <source src="/images/bgmusic.mp3" type="audio/mpeg" />
+    </audio>
     <header id="header" class="fixed--bg" role="banner">
       <div class="wrap-header--padding-sm">
         <nav class="main-navigation">
@@ -1262,48 +1265,95 @@
     </main>
     <script>
       (function() {
-        function updateIcon(toggle, audio) {
+        function setIcon(toggle, audio) {
           var svg = toggle.querySelector('svg');
           if (!svg) return;
-          if (audio.paused) {
+          var isOff = audio.paused || audio.muted;
+          if (isOff) {
             svg.innerHTML = '<path d="M9 9h.01"></path><path d="M15 9h.01"></path><path d="M9 15h.01"></path><path d="M15 15h.01"></path><rect x="2" y="2" width="20" height="20" rx="2"></rect><line x1="2" y1="2" x2="22" y2="22" stroke-width="2"></line>';
           } else {
             svg.innerHTML = '<path d="M9 9h.01"></path><path d="M15 9h.01"></path><path d="M9 15h.01"></path><path d="M15 15h.01"></path><rect x="2" y="2" width="20" height="20" rx="2"></rect>';
           }
-          toggle.setAttribute('aria-pressed', audio.paused ? 'false' : 'true');
+          toggle.setAttribute('aria-pressed', isOff ? 'false' : 'true');
         }
+
+        function fadeIn(audio, target) {
+          target = typeof target === 'number' ? target : 0.5;
+          var step = 0.05;
+          var iv = setInterval(function(){
+            var next = Math.min(target, audio.volume + step);
+            audio.volume = next;
+            if (next >= target) clearInterval(iv);
+          }, 100);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
           var audio = document.getElementById('bg-music');
           var toggle = document.getElementById('music-toggle');
           if (!audio || !toggle) { return; }
-          updateIcon(toggle, audio);
+
+          // Ensure consistent initial state for autoplay policies
+          audio.muted = true;
+          audio.volume = 0.0;
+          try { audio.load(); } catch(e) {}
+
+          setIcon(toggle, audio);
+
           function tryAutoplay() {
             var p = audio.play();
             if (p && p.catch) {
-              p.catch(function(){ updateIcon(toggle, audio); });
+              p.catch(function(){ setIcon(toggle, audio); });
             }
           }
+
+          // Toggle behavior
           toggle.addEventListener('click', function(e){
             e.preventDefault();
             if (audio.paused) {
+              audio.muted = false;
               var p2 = audio.play();
-              if (p2 && p2.then) { p2.then(function(){ updateIcon(toggle, audio); }).catch(function(){ updateIcon(toggle, audio); }); }
-              else { updateIcon(toggle, audio); }
+              if (p2 && p2.then) {
+                p2.then(function(){ fadeIn(audio, 0.5); setIcon(toggle, audio); }).catch(function(){ setIcon(toggle, audio); });
+              } else { fadeIn(audio, 0.5); setIcon(toggle, audio); }
+            } else if (audio.muted) {
+              audio.muted = false;
+              fadeIn(audio, 0.5);
+              setIcon(toggle, audio);
             } else {
               audio.pause();
-              updateIcon(toggle, audio);
+              setIcon(toggle, audio);
             }
           });
+
+          // Attempt autoplay muted
           tryAutoplay();
-          function kickstart() {
-            if (audio.paused) {
+
+          // On first user gesture, unmute and fade in
+          var gesture = function(){
+            if (!audio.paused) {
+              audio.muted = false;
+              fadeIn(audio, 0.5);
+            } else {
+              try { audio.load(); } catch(e) {}
               var p3 = audio.play();
-              if (p3 && p3.then) { p3.then(function(){ updateIcon(toggle, audio); }).catch(function(){ updateIcon(toggle, audio); }); }
-              else { updateIcon(toggle, audio); }
+              if (p3 && p3.then) {
+                p3.then(function(){ audio.muted = false; fadeIn(audio, 0.5); setIcon(toggle, audio); }).catch(function(){ setIcon(toggle, audio); });
+              } else { audio.muted = false; fadeIn(audio, 0.5); setIcon(toggle, audio); }
             }
-            window.removeEventListener('pointerdown', kickstart);
-          }
-          window.addEventListener('pointerdown', kickstart, { once: true });
+            setIcon(toggle, audio);
+            window.removeEventListener('pointerdown', gesture);
+            window.removeEventListener('keydown', gesture);
+            window.removeEventListener('touchstart', gesture);
+            window.removeEventListener('click', gesture);
+            window.removeEventListener('wheel', gesture);
+            window.removeEventListener('scroll', gesture);
+          };
+          window.addEventListener('pointerdown', gesture, { once: true });
+          window.addEventListener('keydown', gesture, { once: true });
+          window.addEventListener('touchstart', gesture, { once: true });
+          window.addEventListener('click', gesture, { once: true });
+          window.addEventListener('wheel', gesture, { once: true, passive: true });
+          window.addEventListener('scroll', gesture, { once: true, passive: true });
         });
       })();
     </script>
