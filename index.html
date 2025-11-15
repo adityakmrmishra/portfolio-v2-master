@@ -58,12 +58,45 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* Force Poppins for hero headline */
+   /* Force Poppins for hero headline */
     .page-header .main-wrapper .text h1.uppercase,
     .page-header .main-wrapper .text h1.uppercase .line {
       font-family: 'Poppins', Arial, sans-serif !important;
       font-weight: 700 !important;
     }
+    /* Footer: Force Poppins for "Let's Connect" heading */
+    #footer .text h3.h1--uppercase,
+    #footer .text h3.h1--uppercase .line {
+      font-family: 'Poppins', Arial, sans-serif !important;
+      font-size: 0.5em; /* slightly smaller */
+      margin-bottom: 4rem; /* add more spacing to avoid overlap */
+      
+    }
+    /* Footer content spacing to avoid overlap on small screens */
+    #footer .content { margin-top: 2rem; }
+    @media (min-width: 900px) { #footer .content { margin-top: 0; } }
+    /* Clients grid: text-only cards */
+    #cases .grid__cell-img-inner .client-card {
+      font-family: 'Poppins', Arial, sans-serif;
+      /* background: rgba(255,255,255,0.03); */
+      /* border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; */
+      padding: 1.2rem 1rem;
+      line-height: 1.5;
+    }
+    #cases .grid__cell-img-inner .client-name {
+      font-family: 'Poppins', Arial, sans-serif !important;
+      margin: 0 0 0.35rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    #cases .grid__cell-img-inner .client-desc {
+      margin: 0;
+      font-weight: 300;
+      opacity: 0.85;
+    }
+    /* Footer: hide skills block without breaking layout expectations */
+    #footer .text .skills { display: none !important; }
   </style>
 </head>
 
@@ -218,496 +251,123 @@
           </div>
         </div>
       </section>
+      
       <section id="cases" style="position: relative;">
 
         <div id="clients-model-wrapper"
           style="position:absolute; bottom:-20%; right:-15%; width:110%; height:110%; pointer-events:none; overflow:hidden; z-index:0;">
           <canvas class="webgl-clients" style="width:100%;height:100%;display:block;"></canvas>
         </div>
+
+
+
         <div class="main-wrapper" >
-
-
           <div class="grid grid--large">
+
             <div class="grid__cell grid__cell-c1-r1">
               <div class="wrapper">
                 <h3 class="heading--uppercase--inline">
-                  <span class="div"><span class="line">Client</span></span>
+                  <span class="div"><span class="line"></span></span>
                 </h3>
                 <p class="uppercase animation-line content__item-text" data-margin="none">
-                  1
+                  
                 </p>
               </div>
             </div>
             <div class="grid__cell grid__cell-c2-r1">
               <div class="grid__cell-img">
                 <div class="grid__cell-img-inner" data-item="item-1">
-                  <picture>
-                    <img class="lazyload" data-src="/images/assets/zepythagore.png"
-                      alt="zepythagore Project | Gilles Momeni" />
-                  </picture>
+                  <div class="client-card">
+                    <h4 class="client-name">UHCXplore</h4>
+                    <p class="client-desc">Healthcare data visualization and analytics platform.</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="grid__cell grid__cell-c1-r2">
               <div class="grid__cell-img">
                 <div class="grid__cell-img-inner" data-item="item-2">
-                  <picture>
-                    <source type="image/webp"
-                      data-src="/images/beatrice-cortese-4k.webp 1x, /images/beatrice-cortese-4k@2x.webp 2x"
-                      media="--4k" />
-                    <source type="image/jpg"
-                      data-src="/images/beatrice-cortese-4k.jpg 1x, /images/beatrice-cortese-4k@2x.jpg 2x"
-                      media="--4k" />
-                    <source type="image/webp"
-                      data-src="/images/beatrice-cortese-2k.webp 1x, /images/beatrice-cortese-2k@2x.webp 2x"
-                      media="--2k" />
-                    <source type="image/jpg"
-                      data-src="/images/beatrice-cortese-2k.jpg 1x, /images/beatrice-cortese-2k@2x.jpg 2x"
-                      media="--2k" />
-                    <source type="image/webp"
-                      data-src="/images/beatrice-cortese-hd.webp 1x, /images/beatrice-cortese-hd@2x.webp 2x"
-                      media="--hd" />
-                    <source type="image/jpg"
-                      data-src="/images/beatrice-cortese-hd.jpg 1x, /images/beatrice-cortese-hd@2x.jpg 2x"
-                      media="--hd" />
-                    <source type="image/webp"
-                      data-src="/images/beatrice-cortese-pi.webp 1x, /images/beatrice-cortese-pi@2x.webp 2x"
-                      media="--pi" />
-                    <source type="image/jpg"
-                      data-src="/images/beatrice-cortese-pi.jpg 1x, /images/beatrice-cortese-pi@2x.jpg 2x"
-                      media="--pi" />
-                    <source type="image/webp"
-                      data-src="/images/beatrice-cortese-md.webp 1x, /images/beatrice-cortese-md@2x.webp 2x"
-                      media="--md" />
-                    <source type="image/jpg"
-                      data-src="/images/beatrice-cortese-md.jpg 1x, /images/beatrice-cortese-md@2x.jpg 2x"
-                      media="--md" />
-                    <source type="image/webp"
-                      data-src="/images/beatrice-cortese-mobile.webp 1x, /images/beatrice-cortese-mobile@2x.webp 2x"
-                      media="--mobile" />
-                    <source type="image/jpg"
-                      data-src="/images/beatrice-cortese-mobile.jpg 1x, /images/beatrice-cortese-mobile@2x.jpg 2x"
-                      media="--mobile" />
-                    <img class="lazyload grid__bg-img" width="912" height="431"
-                      data-src="/images/beatrice-cortese-hd.jpg" alt="Beatrice Cortese Project by Gilles Momeni" />
-                  </picture>
+                  <div class="client-card">
+                    <h4 class="client-name">Beatrice Cortese</h4>
+                    <p class="client-desc">Brand identity and portfolio site revamp.</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="grid__cell grid__cell-c2-r2">
               <div class="wrapper">
                 <h3 class="heading--uppercase--inline">
-                  <span class="div"><span class="line">Client</span></span>
+                  <span class="div"><span class="line"></span></span>
                 </h3>
                 <p class="uppercase animation-line content__item-text" data-margin="none">
-                  2
+                  
                 </p>
               </div>
             </div>
             <div class="grid__cell grid__cell-c2-r3">
               <div class="grid__cell-img">
                 <div class="grid__cell-img-inner" data-item="item-3">
-                  <picture>
-                    <img class="lazyload" data-src="/images/assets/autospace.png"
-                      alt="autospaceProject | Gilles Momeni" />
-                  </picture>
+                  <div class="client-card">
+                    <h4 class="client-name">Autospace</h4>
+                    <p class="client-desc">Automotive listings platform UX and performance.</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="grid__cell grid__cell-c3-r3">
               <div class="wrapper">
                 <h3 class="heading--uppercase--inline">
-                  <span class="div"><span class="line">Client</span></span>
+                  <span class="div"><span class="line"></span></span>
                 </h3>
                 <p class="uppercase animation-line content__item-text" data-margin="none">
-                  2
+                  
                 </p>
               </div>
             </div>
             <div class="grid__cell grid__cell-c2-r4">
               <div class="wrapper">
                 <h3 class="heading--uppercase--inline">
-                  <span class="div"><span class="line">Client</span>
+                  <span class="div"><span class="line"></span>
                   </span>
                 </h3>
                 <p class="uppercase animation-line content__item-text" data-margin="none">
-                  3
+                  
                 </p>
               </div>
             </div>
             <div class="grid__cell grid__cell-c3-r4">
               <div class="grid__cell-img">
                 <div class="grid__cell-img-inner" data-item="item-4">
-                  <picture>
-                    <source type="image/webp"
-                      data-src="/images/house4crowd-4k.webp 1x, /images/house4crowd-4k@2x.webp 2x" media="--4k" />
-                    <source type="image/jpg" data-src="/images/house4crowd-4k.jpg 1x, /images/house4crowd-4k@2x.jpg 2x"
-                      media="--4k" />
-                    <source type="image/webp"
-                      data-src="/images/house4crowd-2k.webp 1x, /images/house4crowd-2k@2x.webp 2x" media="--2k" />
-                    <source type="image/jpg" data-src="/images/house4crowd-2k.jpg 1x, /images/house4crowd-2k@2x.jpg 2x"
-                      media="--2k" />
-                    <source type="image/webp"
-                      data-src="/images/house4crowd-hd.webp 1x, /images/house4crowd-hd@2x.webp 2x" media="--hd" />
-                    <source type="image/jpg" data-src="/images/house4crowd-hd.jpg 1x, /images/house4crowd-hd@2x.jpg 2x"
-                      media="--hd" />
-                    <source type="image/webp"
-                      data-src="/images/house4crowd-pi.webp 1x, /images/house4crowd-pi@2x.webp 2x" media="--pi" />
-                    <source type="image/jpg" data-src="/images/house4crowd-pi.jpg 1x, /images/house4crowd-pi@2x.jpg 2x"
-                      media="--pi" />
-                    <source type="image/webp"
-                      data-src="/images/house4crowd-md.webp 1x, /images/house4crowd-md@2x.webp 2x" media="--md" />
-                    <source type="image/jpg" data-src="/images/house4crowd-md.jpg 1x, /images/house4crowd-md@2x.jpg 2x"
-                      media="--md" />
-                    <source type="image/webp"
-                      data-src="/images/house4crowd-mobile.webp 1x, /images/house4crowd-mobile@2x.webp 2x"
-                      media="--mobile" />
-                    <source type="image/jpg"
-                      data-src="/images/house4crowd-mobile.jpg 1x, /images/house4crowd-mobile@2x.jpg 2x"
-                      media="--mobile" />
-                    <img class="lazyload grid__bg-img" width="912" height="431" data-src="/images/house4crowd-hd.jpg"
-                      alt="Codeway Project by Gilles Momeni" />
-                  </picture>
+                  <div class="client-card">
+                    <h4 class="client-name">House4Crowd</h4>
+                    <p class="client-desc">Real-estate crowdfunding product design.</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="grid__cell grid__cell-c1-r5">
               <div class="wrapper">
                 <h3 class="heading--uppercase--inline">
-                  <span class="div"><span class="line">Client</span></span>
+                  <span class="div"><span class="line"></span></span>
                 </h3>
                 <p class="uppercase animation-line content__item-text" data-margin="none">
-                  4
+                  
                 </p>
               </div>
             </div>
             <div class="grid__cell grid__cell-c2-r5">
               <div class="grid__cell-img">
                 <div class="grid__cell-img-inner" data-item="item-5">
-                  <picture>
-                    <img class="lazyload" data-src="/images/assets/xmoni.png" alt="xmoni Project | Gilles Momeni" />
-                  </picture>
+                  <div class="client-card">
+                    <h4 class="client-name">Xmoni</h4>
+                    <p class="client-desc">Fintech wallet and payments platform.</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-
-          <!-- <div class="content">
-              <div class="content__item" id="item-1">
-                <h2 class="content__item-heading animation-title uppercase">
-                  <span class="split"><div class="line">Zepythagore</div></span>
-                </h2>
-                <p class="content__item-text uppercase">
-                  With a network of more than 100 professors who are experts in
-                  their fields and a multitude of students who are the top of
-                  their classes, ZEPYTHAGOR, through them, provides you with a
-                  range of proofreading tools available on the platform, thus
-                  guaranteeing their reliability. <br />It is because a problem
-                  equals a solution with us that being part of ours will
-                  contribute to your exponential growth through our range of
-                  content.
-                </p>
-                <button class="back" aria-label="Go Back">
-                  <svg
-                    width="192"
-                    height="61"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M190.67 59.618c-3.755-6.474-8.055-8.114-15.08-12.037-29.012-16.203-60.856-27.41-93.698-33.032-23.62-4.042-47.563-3.598-70.249 3.098.924 1.042 2.057.631 3.013 1.476.703.62 1.135 1.93 1.81 2.68 1.814 2.007 10 9.118 12.865 7.498-2.329-1.766-5.88-3.105-8.504-4.314-5.608-2.583-11.812-7.142-17.819-8.491 2.17-2.823 19.724-19.765 22.96-12.718"
-                      stroke="#FFF"
-                      stroke-width="3"
-                      fill="none"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <div class="footer">
-                  <div class="line"></div>
-                  <div class="info">
-                    <p class="uppercase">Role: UI/UX and Backend Developer</p>
-                    <p class="uppercase awards">2021 01-project</p>
-                  </div>
-                  <div class="cta">
-                    <a
-                      href="https://zepythagore.com/"
-                      target="_blank"
-                      rel="noopener"
-                      >see case
-                      <svg
-                        width="17"
-                        height="17"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M14.875 13.357V3.643L1.518 17 0 15.482 13.357 2.125H3.643V0H17v13.357z"
-                          fill="#FFF"
-                          fill-rule="nonzero"
-                        />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="content__item" id="item-2">
-                <h2 class="content__item-heading animation-title uppercase">
-                  <span class="split"><div class="line">FarmAssist</div></span>
-                </h2>
-                <p class="content__item-text uppercase">
-                  Farmassist - Your all-in-one app for data-driven farming,it is
-                  a smart farming app for IoT and AI-powered plant disease
-                  detection. It is built with Flutter later migrated to expo app
-                  and uses Firebase as its backend service.
-                </p>
-                <button class="back" aria-label="Go Back">
-                  <svg
-                    width="192"
-                    height="61"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M190.67 59.618c-3.755-6.474-8.055-8.114-15.08-12.037-29.012-16.203-60.856-27.41-93.698-33.032-23.62-4.042-47.563-3.598-70.249 3.098.924 1.042 2.057.631 3.013 1.476.703.62 1.135 1.93 1.81 2.68 1.814 2.007 10 9.118 12.865 7.498-2.329-1.766-5.88-3.105-8.504-4.314-5.608-2.583-11.812-7.142-17.819-8.491 2.17-2.823 19.724-19.765 22.96-12.718"
-                      stroke="#FFF"
-                      stroke-width="3"
-                      fill="none"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <div class="footer">
-                  <div class="line"></div>
-                  <div class="info">
-                    <p class="uppercase">
-                      Role: UI/UX, Frontend and Backend Developer
-                    </p>
-                    <p class="uppercase awards">2023 02-project</p>
-                  </div>
-                  <div class="cta">
-                    <a
-                      href="https://farmassist-doc.netlify.app/"
-                      target="_blank"
-                      rel="noopener"
-                      >see case
-                      <svg
-                        width="17"
-                        height="17"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M14.875 13.357V3.643L1.518 17 0 15.482 13.357 2.125H3.643V0H17v13.357z"
-                          fill="#FFF"
-                          fill-rule="nonzero"
-                        />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="content__item" id="item-3">
-                <h2 class="content__item-heading animation-title uppercase">
-                  <span class="split"><div class="line">Autospace</div></span>
-                </h2>
-                <p class="content__item-text uppercase">
-                  Autospace is a comprehensive parking management suite designed
-                  to revolutionize the way parking facilities operate. Whether
-                  you're managing a small parking lot or a large-scale parking
-                  facility, Autospace provides an all-in-one solution to
-                  streamline operations, enhance user experience, and maximize
-                  efficiency. From real-time parking availability tracking to
-                  automated payment systems, Autospace is built to simplify
-                  parking management for operators and users alike.
-                </p>
-                <button class="back" aria-label="Go Back">
-                  <svg
-                    width="192"
-                    height="61"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M190.67 59.618c-3.755-6.474-8.055-8.114-15.08-12.037-29.012-16.203-60.856-27.41-93.698-33.032-23.62-4.042-47.563-3.598-70.249 3.098.924 1.042 2.057.631 3.013 1.476.703.62 1.135 1.93 1.81 2.68 1.814 2.007 10 9.118 12.865 7.498-2.329-1.766-5.88-3.105-8.504-4.314-5.608-2.583-11.812-7.142-17.819-8.491 2.17-2.823 19.724-19.765 22.96-12.718"
-                      stroke="#FFF"
-                      stroke-width="3"
-                      fill="none"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <div class="footer">
-                  <div class="line"></div>
-                  <div class="info">
-                    <p class="uppercase">
-                      Role: UI/UX, Frontend and Backend Developer
-                    </p>
-                    <p class="uppercase awards"></p>
-                  </div>
-                  <div class="cta">
-                    <a
-                      href="https://autospace-workshop-web.vercel.app/"
-                      target="_blank"
-                      rel="noopener"
-                      >see case (dev demo)
-                      <svg
-                        width="17"
-                        height="17"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M14.875 13.357V3.643L1.518 17 0 15.482 13.357 2.125H3.643V0H17v13.357z"
-                          fill="#FFF"
-                          fill-rule="nonzero"
-                        />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="content__item" id="item-4">
-                <h2 class="content__item-heading animation-title uppercase">
-                  <span class="split"
-                    ><div class="line">Parking Management App</div></span
-                  >
-                </h2>
-                <p class="content__item-text uppercase">
-                  Parking Management App with Admin Dashboard & ALPR Simulator
-                  is a comprehensive, tech-driven solution designed to modernize
-                  parking operations for businesses, municipalities, and parking
-                  facility operators. This innovative platform combines a
-                  user-friendly mobile app, a powerful admin dashboard, and an
-                  Automated License Plate Recognition (ALPR) simulator to
-                  streamline parking management, enhance security, and improve
-                  user experience. Whether you're managing a single parking lot
-                  or a network of facilities, this app provides the tools you
-                  need to optimize operations, reduce costs, and deliver a
-                  seamless parking experience.
-                </p>
-                <button class="back" aria-label="Go Back">
-                  <svg
-                    width="192"
-                    height="61"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M190.67 59.618c-3.755-6.474-8.055-8.114-15.08-12.037-29.012-16.203-60.856-27.41-93.698-33.032-23.62-4.042-47.563-3.598-70.249 3.098.924 1.042 2.057.631 3.013 1.476.703.62 1.135 1.93 1.81 2.68 1.814 2.007 10 9.118 12.865 7.498-2.329-1.766-5.88-3.105-8.504-4.314-5.608-2.583-11.812-7.142-17.819-8.491 2.17-2.823 19.724-19.765 22.96-12.718"
-                      stroke="#FFF"
-                      stroke-width="3"
-                      fill="none"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <div class="footer">
-                  <div class="line"></div>
-                  <div class="info">
-                    <p class="uppercase">
-                      Role: UI/UX, Frontend and Backend Developer
-                    </p>
-                    <p class="uppercase awards"></p>
-                  </div>
-                  <div class="cta">
-                    <a
-                      href="https://uhcxplore.com/portfolio/parking-management-app-alpr-simulator"
-                      target="_blank"
-                      rel="noopener"
-                      >see case
-                      <svg
-                        width="17"
-                        height="17"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M14.875 13.357V3.643L1.518 17 0 15.482 13.357 2.125H3.643V0H17v13.357z"
-                          fill="#FFF"
-                          fill-rule="nonzero"
-                        />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="content__item" id="item-5">
-                <h2 class="content__item-heading animation-title uppercase">
-                  <span class="split"><div class="line">Xmoni</div></span>
-                </h2>
-                <p class="content__item-text uppercase">
-                  Introducing on Xmoni – the complete, all-in-one financial
-                  solution. Xmoni simplifies financial management with seamless
-                  transfers, secure payments, and smart savings tools. With a
-                  focus on innovation and security, it empowers users to take
-                  control of their finances effortlessly.
-                </p>
-                <button class="back" aria-label="Go Back">
-                  <svg
-                    width="192"
-                    height="61"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M190.67 59.618c-3.755-6.474-8.055-8.114-15.08-12.037-29.012-16.203-60.856-27.41-93.698-33.032-23.62-4.042-47.563-3.598-70.249 3.098.924 1.042 2.057.631 3.013 1.476.703.62 1.135 1.93 1.81 2.68 1.814 2.007 10 9.118 12.865 7.498-2.329-1.766-5.88-3.105-8.504-4.314-5.608-2.583-11.812-7.142-17.819-8.491 2.17-2.823 19.724-19.765 22.96-12.718"
-                      stroke="#FFF"
-                      stroke-width="3"
-                      fill="none"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <div class="footer">
-                  <div class="line"></div>
-                  <div class="info">
-                    <p class="uppercase">
-                      Role: UI/UX, Frontend and Backend Developer
-                    </p>
-                    <p class="uppercase awards">01 Awards</p>
-                  </div>
-                  <div class="cta">
-                    <a href="https://xmoni.io" target="_blank" rel="noopener"
-                      >see case
-                      <svg
-                        width="17"
-                        height="17"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M14.875 13.357V3.643L1.518 17 0 15.482 13.357 2.125H3.643V0H17v13.357z"
-                          fill="#FFF"
-                          fill-rule="nonzero"
-                        />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <nav class="grid grid--mini" display="none">
-                <div class="grid__cell grid__cell-c1-r1">
-                  <div class="grid__cell-img">
-                    <div class="grid__cell-img-inner"></div>
-                  </div>
-                </div>
-                <div class="grid__cell grid__cell-c3-r1">
-                  <div class="grid__cell-img">
-                    <div class="grid__cell-img-inner"></div>
-                  </div>
-                </div>
-                <div class="grid__cell grid__cell-c4-r1">
-                  <div class="grid__cell-img">
-                    <div class="grid__cell-img-inner"></div>
-                  </div>
-                </div>
-                <div class="grid__cell grid__cell-c1-r2">
-                  <div class="grid__cell-img">
-                    <div class="grid__cell-img-inner"></div>
-                  </div>
-                </div>
-                <div class="grid__cell grid__cell-c3-r2">
-                  <div class="grid__cell-img">
-                    <div class="grid__cell-img-inner"></div>
-                  </div>
-                </div>
-              </nav>
-            </div> -->
-      
-      
           </div>
+        </div>
 
       </section>
 
@@ -818,7 +478,7 @@
 
 
       <section id="featured">
-        <div class="loop-element" data-title="Group Companies">
+        <div class="loop-element" data-title="">
           <div class="marquee">
             <div class="marquee--inner heading--md">
               <span>uhcxplore.com, xmoni.io, zepythagore.com, uhcxplore.com,
@@ -846,26 +506,26 @@
               <p class="h2--uppercase" data-margin="none">
                 <!-- <span>I'm always interested about</span> -->
               </p>
-              <a href="mailto:gillemomeni@gmail.com?subject=👨‍🎨%20I%20am%20looking%20for%20a%20master%20of%20no-code%20platform.%20Let's%20talk"
+              <a href="mailto:example@gmail.com?subject=👨‍🎨%20I%20am%20looking%20for%20a%20master%20of%20no-code%20platform.%20Let's%20talk"
                 class="btn--md--extra--border--animation" data-speed="3" role="button"></a><a
-                href="mailto:gillemomeni@gmail.com?subject=💼%20Could%20you%20help%20me%20with%20my%20business?"
+                href="mailto:example@gmail.com?subject=💼%20Could%20you%20help%20me%20with%20my%20business?"
                 class="btn--md--extra--border--animation" data-speed="3" role="button"></a><a
-                href="mailto:gillemomeni@gmail.com?subject=💼%20Could%20you%20help%20me%20with%20my%20news%20business?"
+                href="mailto:example@gmail.com?subject=💼%20Could%20you%20help%20me%20with%20my%20news%20business?"
                 class="btn--md--extra--border--animation" data-speed="3" role="button">
               </a>
-              <a href="mailto:gillemomeni@gmail.com?subject=💼%20Could%20you%20help%20me%20with%20my%20news%20business?"
+              <a href="mailto:example@gmail.com?subject=💼%20Could%20you%20help%20me%20with%20my%20news%20business?"
                 class="btn--md--extra--border--animation" data-speed="3" role="button">
               </a>
-              <a href="mailto:gillemomeni@gmail.com?subject=💼%20Could%20you%20help%20me%20with%20my%20news%20business?"
+              <a href="mailto:example@gmail.com?subject=💼%20Could%20you%20help%20me%20with%20my%20news%20business?"
                 class="btn--md--extra--border--animation" data-speed="3" role="button">
               </a>
-              <a href="mailto:gillemomeni@gmail.com?subject=🚀%20Could%20you%20help%20me%20with%20my%20startup?"
+              <a href="mailto:example@gmail.com?subject=🚀%20Could%20you%20help%20me%20with%20my%20startup?"
                 class="btn--md--extra--border--animation" data-speed="3" role="button">
               </a>
-              <a href="mailto:gillemomeni@gmail.com?subject=🍕%20mmm...I%20love%20Gaming!%20Give%20me%20five!"
+              <a href="mailto:example@gmail.com?subject=🍕%20mmm...I%20love%20Gaming!%20Give%20me%20five!"
                 class="btn--md--extra--border--animation" data-speed="3" role="button">
               </a>
-              <a href="mailto:gillemomeni@gmail.com?subject=👨‍💻%20I%20am%20looking%20for%20a%20AI%20Developer.%20Let's%20talk"
+              <a href="mailto:example@gmail.com?subject=👨‍💻%20I%20am%20looking%20for%20a%20AI%20Developer.%20Let's%20talk"
                 class="btn--md--extra--border--animation" data-speed="3" role="button">
               </a>
             </div>
@@ -875,7 +535,7 @@
               <p class="h2">
                 <span>jui@juiglobal.com</span>
               </p>
-              <a href="mailto:gillemomeni@gmail.com?subject=🤝%20Project%20info.%20Let's%20talk"
+              <a href="mailto:example@gmail.com?subject=🤝%20Project%20info.%20Let's%20talk"
                 class="btn--md--extra--border--animation--light" data-speed="3" role="button"><span>CONTACT ME</span>
                 <div class="marquee" aria-hidden="true">
                   <div class="marquee--inner">
@@ -1038,6 +698,7 @@
         </div>
       </div>
     </div>
+
     <div id="full-credits">
       <div class="wrapper">
         <div class="top-bar">
@@ -1077,6 +738,7 @@
         </div>
       </div>
     </div>
+    
   </main>
   <script>
     (function () {
@@ -1232,6 +894,22 @@
       console.log("");
     });
   }
+</script>
+<script>
+  // Ensure scrolling is enabled once DOM is ready
+  (function () {
+    function enableScroll() {
+      var main = document.getElementById('main-wrap');
+      if (!main) return;
+      main.classList.add('loaded');
+      main.classList.remove('loading'); // prevent CSS from locking overflow
+    }
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(enableScroll, 0);
+    } else {
+      document.addEventListener('DOMContentLoaded', enableScroll);
+    }
+  })();
 </script>
 
 </html>

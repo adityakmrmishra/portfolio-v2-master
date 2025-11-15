@@ -5143,7 +5143,7 @@ html[class*="font-loaded"] [class*="availability"] .label {
   transform: translateY(100%);
   filter: grayscale(1) sepia(1) saturate(0.5) contrast(0.6) brightness(0.8);
   position: relative;
-  background-color: #f5eee6;
+ 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
