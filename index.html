@@ -151,7 +151,11 @@
         </div>
       </div>
     </div>
+
+
     <div class="page-content">
+
+      <!-- About me -->
       <section id="intro">
         <div class="main-wrapper">
           <div class="text">
@@ -211,7 +215,7 @@
         </div>
         <div class="main-wrapper" >
 
-          
+
           <div class="grid grid--large">
             <div class="grid__cell grid__cell-c1-r1">
               <div class="wrapper">
@@ -992,6 +996,8 @@
         </div>
       </div>
     </div>
+
+
     <div id="full-awards">
       <div class="wrapper">
         <div class="top-bar">
@@ -1172,11 +1178,39 @@
             // Keep pointer-events none and correct z-index
             bgWrap.style.pointerEvents = 'none';
             bgWrap.style.zIndex = '0';
+            bgWrap.style.transition = 'opacity 0.3s ease';
           }
           var mainWrap = casesSection && casesSection.querySelector('.main-wrapper');
           if (mainWrap) {
             mainWrap.style.position = 'relative';
             mainWrap.style.zIndex = '1';
+          }
+
+          // Add scroll fade effect for clients model
+          if (bgWrap && casesSection) {
+            function handleScroll() {
+              var rect = casesSection.getBoundingClientRect();
+              var windowHeight = window.innerHeight;
+              
+              // Calculate fade based on section position
+              var sectionTop = rect.top;
+              var sectionHeight = rect.height;
+              
+              // Start fading when section is 50% visible and fade completely when scrolled past
+              var fadeStart = windowHeight * 0.5;
+              var fadeEnd = -sectionHeight * 0.3;
+              
+              var opacity = 1;
+              if (sectionTop < fadeStart) {
+                var fadeProgress = (fadeStart - sectionTop) / (fadeStart - fadeEnd);
+                opacity = Math.max(0, 1 - fadeProgress);
+              }
+              
+              bgWrap.style.opacity = opacity;
+            }
+            
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            handleScroll(); // Initial call
           }
         })();
       </script>
