@@ -41514,6 +41514,231 @@
                   window.requestAnimationFrame(r);
               })();
           })(),
+          !(function () {
+            var obj2,
+              cam2,
+              scene2,
+              renderer2,
+              clock2 = new jm(),
+              last2 = 0,
+              heroCanvas = document.querySelector("canvas.webgl-hero"),
+              heroWrap = document.querySelector("#hero-model-wrapper");
+            if (!heroCanvas || !heroWrap) return;
+            var dims2 = {
+              width: heroWrap.offsetWidth,
+              height: heroWrap.offsetHeight,
+              windowWidth: window.innerWidth,
+              windowHeight: window.innerHeight,
+            };
+            var fov2 = 40;
+            scene2 = new np();
+            var draco2 = new ev();
+            draco2.setDecoderPath("/draco/");
+            var gltfLoader2 = new pg();
+            gltfLoader2.setDRACOLoader(draco2);
+            function onResize2() {
+              dims2.width = heroWrap.offsetWidth;
+              dims2.height = heroWrap.offsetHeight;
+              dims2.windowWidth = window.innerWidth;
+              dims2.windowHeight = window.innerHeight;
+              cam2.aspect = dims2.width / dims2.height;
+              cam2.updateProjectionMatrix();
+              renderer2.setSize(dims2.width, dims2.height);
+              renderer2.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            }
+            switch (!0) {
+              case dims2.windowWidth > 481 && dims2.windowWidth < 1200:
+              case dims2.windowWidth <= 480:
+                fov2 = 55;
+                break;
+              default:
+                fov2 = 40;
+            }
+            (cam2 = new eu(fov2, dims2.width / dims2.height, 0.01, 100)).position.set(
+              0,
+              0,
+              40
+            );
+            scene2.add(cam2);
+            gltfLoader2.load(
+              "/models/earth.glb",
+              function (g) {
+                obj2 = g.scene && g.scene.children && g.scene.children[0] ? g.scene.children[0] : g.scene;
+                obj2.traverse && obj2.traverse(function (child) {
+                  child.castShadow = !1;
+                  child.receiveShadow = !1;
+                });
+                scene2.add(obj2);
+                // Frame the object nicely in view
+                var box = new nl();
+                box.setFromObject(obj2);
+                var size = new $a();
+                box.getSize(size);
+                var center = new $a();
+                box.getCenter(center);
+                // Re-center object at origin
+                obj2.position.x += -center.x;
+                obj2.position.y += -center.y;
+                obj2.position.z += -center.z;
+                // Compute ideal distance from object size and FOV
+                var maxSize = Math.max(size.x, size.y, size.z);
+                var aspect2 = dims2.width / dims2.height;
+                var fitHeightDistance = maxSize / (2 * Math.tan((Math.PI * cam2.fov) / 360));
+                var fitWidthDistance = fitHeightDistance / aspect2;
+                // Make it bigger: use a smaller multiplier (closer camera)
+                var distance = 0.9 * Math.max(fitHeightDistance, fitWidthDistance);
+                // Compute view extents at the object plane
+                var halfV = Math.tan((Math.PI * cam2.fov) / 360) * distance;
+                var halfH = halfV * aspect2;
+                var margin = 0.06 * Math.max(halfH, halfV);
+                // Position object so its left/bottom edges sit near the view edges
+                var halfX = size.x * 0.5;
+                var halfY = size.y * 0.5;
+                var yNudge = -0.1 * size.y; // shift a little down
+                obj2.position.x = (-halfH + margin) + halfX;
+                obj2.position.y = (-halfV + margin) + halfY + yNudge;
+                // Update camera and look
+                cam2.far = Math.max(100, distance * 3);
+                cam2.updateProjectionMatrix();
+                cam2.position.set(0, 0, distance);
+                cam2.lookAt(0, 0, 0);
+              },
+              undefined,
+              function (err) {
+                try {
+                  console.error("Failed to load /models/earth.glb", err);
+                } catch (e) {}
+              }
+            );
+            var key2 = new Hm(new Va("#ffffff"), 0.8);
+            key2.position.set(-3, 5, 5);
+            scene2.add(key2);
+            var fill2 = new Hm(new Va("#ffffff"), 0.3);
+            fill2.position.set(3, 2, -2);
+            scene2.add(fill2);
+            (renderer2 = new $d({ canvas: heroCanvas, alpha: !0 })).shadowMap.enabled = !1;
+            renderer2.setSize(dims2.width, dims2.height);
+            renderer2.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            window.addEventListener("resize", onResize2);
+            (function animate2() {
+              var s = clock2.getElapsedTime(),
+                o = s - last2;
+              last2 = s;
+              obj2 && (obj2.rotation.y += 0.05 * o);
+              renderer2.render(scene2, cam2);
+              window.requestAnimationFrame(animate2);
+            })();
+          })(),
+          !(function () {
+            var obj3,
+              cam3,
+              scene3,
+              renderer3,
+              clock3 = new jm(),
+              last3 = 0,
+              clientsCanvas = document.querySelector("canvas.webgl-clients"),
+              clientsWrap = document.querySelector("#clients-model-wrapper");
+            if (!clientsCanvas || !clientsWrap) return;
+            var dims3 = {
+              width: clientsWrap.offsetWidth,
+              height: clientsWrap.offsetHeight,
+              windowWidth: window.innerWidth,
+              windowHeight: window.innerHeight,
+            };
+            var fov3 = 40;
+            scene3 = new np();
+            var draco3 = new ev();
+            draco3.setDecoderPath("/draco/");
+            var gltfLoader3 = new pg();
+            gltfLoader3.setDRACOLoader(draco3);
+            function onResize3() {
+              dims3.width = clientsWrap.offsetWidth;
+              dims3.height = clientsWrap.offsetHeight;
+              dims3.windowWidth = window.innerWidth;
+              dims3.windowHeight = window.innerHeight;
+              cam3.aspect = dims3.width / dims3.height;
+              cam3.updateProjectionMatrix();
+              renderer3.setSize(dims3.width, dims3.height);
+              renderer3.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            }
+            switch (!0) {
+              case dims3.windowWidth > 481 && dims3.windowWidth < 1200:
+              case dims3.windowWidth <= 480:
+                fov3 = 55;
+                break;
+              default:
+                fov3 = 40;
+            }
+            (cam3 = new eu(fov3, dims3.width / dims3.height, 0.01, 100)).position.set(
+              0,
+              0,
+              40
+            );
+            scene3.add(cam3);
+            gltfLoader3.load(
+              "/models/earth.glb",
+              function (g) {
+                obj3 = g.scene && g.scene.children && g.scene.children[0] ? g.scene.children[0] : g.scene;
+                obj3.traverse && obj3.traverse(function (child) {
+                  child.castShadow = !1;
+                  child.receiveShadow = !1;
+                });
+                scene3.add(obj3);
+                // Frame and place at bottom-right
+                var box = new nl();
+                box.setFromObject(obj3);
+                var size = new $a();
+                box.getSize(size);
+                var center = new $a();
+                box.getCenter(center);
+                // Re-center at origin
+                obj3.position.x += -center.x;
+                obj3.position.y += -center.y;
+                obj3.position.z += -center.z;
+                var maxSize = Math.max(size.x, size.y, size.z);
+                var aspect3 = dims3.width / dims3.height;
+                var fitHeightDistance = maxSize / (2 * Math.tan((Math.PI * cam3.fov) / 360));
+                var fitWidthDistance = fitHeightDistance / aspect3;
+                // Slightly bigger
+                var distance = 1.1 * Math.max(fitHeightDistance, fitWidthDistance);
+                var halfV = Math.tan((Math.PI * cam3.fov) / 360) * distance;
+                var halfH = halfV * aspect3;
+                var margin = 0.06 * Math.max(halfH, halfV);
+                var halfX = size.x * 0.5;
+                var halfY = size.y * 0.5;
+                var yNudge = 0.05 * size.y; // shift slightly up to prevent cropping
+                // Right-bottom alignment
+                obj3.position.x = (halfH - margin) - halfX;
+                obj3.position.y = (-halfV + margin) + halfY + yNudge;
+                cam3.far = Math.max(100, distance * 3);
+                cam3.updateProjectionMatrix();
+                cam3.position.set(0, 0, distance);
+                cam3.lookAt(0, 0, 0);
+              },
+              undefined,
+              function (err) {
+                try { console.error("Failed to load /models/earth.glb", err); } catch (e) {}
+              }
+            );
+            var key3 = new Hm(new Va("#ffffff"), 0.8);
+            key3.position.set(-3, 5, 5);
+            scene3.add(key3);
+            var fill3 = new Hm(new Va("#ffffff"), 0.3);
+            fill3.position.set(3, 2, -2);
+            scene3.add(fill3);
+            (renderer3 = new $d({ canvas: clientsCanvas, alpha: !0 })).shadowMap.enabled = !1;
+            renderer3.setSize(dims3.width, dims3.height);
+            renderer3.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            window.addEventListener("resize", onResize3);
+            (function animate3() {
+              var s = clock3.getElapsedTime(),
+                o = s - last3;
+              last3 = s;
+              obj3 && (obj3.rotation.y += 0.05 * o);
+              renderer3.render(scene3, cam3);
+              window.requestAnimationFrame(animate3);
+            })();
+          })(),
             new Av(document.querySelector(".grid--large"));
         });
     })();
